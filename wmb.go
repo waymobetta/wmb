@@ -3,11 +3,9 @@
 package wmb
 
 import (
-	"log"
+	"io/ioutil"
 	"os"
 	"os/exec"
-
-	"github.com/waymobetta/goslack"
 )
 
 func Clear() {
@@ -16,9 +14,10 @@ func Clear() {
 	c.Run()
 }
 
-func Slack(payload string) {
-	_, err := goslack.Send(payload)
+func JsonToString(fileName string) (string, error) {
+	raw, err := ioutil.ReadFile(fileName)
 	if err != nil {
-		log.Fatal(err)
+		return "", err
 	}
+	return string(raw), nil
 }

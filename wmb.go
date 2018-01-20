@@ -8,13 +8,15 @@ import (
 	"os/exec"
 )
 
+// Clear clears the terminal screen
 func Clear() {
 	c := exec.Command("clear")
 	c.Stdout = os.Stdout
 	c.Run()
 }
 
-func JsonToString(fileName string) (string, error) {
+// JSONToString converts JSON file to string
+func JSONToString(fileName string) (string, error) {
 	raw, err := ioutil.ReadFile(fileName)
 	if err != nil {
 		return "", err

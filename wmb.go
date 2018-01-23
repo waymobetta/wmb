@@ -23,3 +23,11 @@ func JSONToString(fileName string) (string, error) {
 	}
 	return string(raw), nil
 }
+
+// TermNotify notifies terminal with data
+func TermNotify(data string) error {
+	if err := exec.Command("terminal-notifier", "-message", data).Run(); err != nil {
+		return err
+	}
+	return nil
+}

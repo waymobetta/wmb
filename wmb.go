@@ -35,9 +35,7 @@ func TermNotify(data string) error {
 }
 
 // ReadFileByLine reads a file line-by-line
-func ReadFileByLine(path string) ([]string, int, error) {
-	data := []string{}
-
+func ReadFileByLine(path string, data []string) ([]string, int, error) {
 	file, err := os.Open(path)
 	defer file.Close()
 

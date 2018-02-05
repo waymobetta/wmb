@@ -17,7 +17,7 @@ func Clear() {
 	c.Run()
 }
 
-// JSONToString converts JSON file to string
+// JSONToString converts JSON file to string; returns string and error
 func JSONToString(fileName string) (string, error) {
 	raw, err := ioutil.ReadFile(fileName)
 	if err != nil {
@@ -26,7 +26,7 @@ func JSONToString(fileName string) (string, error) {
 	return string(raw), nil
 }
 
-// TermNotify notifies terminal with data
+// TermNotify notifies terminal with data; returns error
 func TermNotify(data string) error {
 	if err := exec.Command("terminal-notifier", "-message", data).Run(); err != nil {
 		log.Fatal("[!] Error encountered when attemping to notify user via TermNotify\n", err)
@@ -34,7 +34,7 @@ func TermNotify(data string) error {
 	return nil
 }
 
-// ReadFileByLine reads a file line-by-line
+// ReadFileByLine reads a file line-by-line; returns array, length of array, and error
 func ReadFileByLine(path string, data []string) ([]string, int, error) {
 	file, err := os.Open(path)
 	defer file.Close()
@@ -52,7 +52,7 @@ func ReadFileByLine(path string, data []string) ([]string, int, error) {
 	return data, len(data), nil
 }
 
-// WriteFile writes strings to a file, delimited in some fashion prior to being passed in as an argument
+// WriteFile writes string (data) to a file, delimited in some fashion; returns error
 func WriteFile(path string, data string) error {
 	file, err := os.Create(path)
 	if err != nil {

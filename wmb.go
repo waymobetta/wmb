@@ -4,10 +4,14 @@ package wmb
 
 import (
 	"bufio"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
+	"runtime/debug"
+
+	"github.com/fatih/color"
 )
 
 // Clear clears the terminal screen
@@ -68,4 +72,14 @@ func WriteFile(path string, data string) error {
 		log.Fatal("[!] Error encountered when writing to file\n", err)
 	}
 	return nil
+}
+
+// Require is a mirror of Require in Solidity; rather than reverting a transaction, this Require will panic loudly and print stacktrace if arguments do not match
+func Require(a interface{}, b interface{}) {
+	if a != b {
+		fmt.Println("")
+		color.Red("[!] Execution halted: requirement not fulfilled!\nDetails: %v != %v\n\n", a, b)
+		debug.PrintStack()
+		os.Exit(0)
+	}
 }

@@ -57,7 +57,7 @@ func ReadFileByLine(path string, data []string) ([]string, int, error) {
 }
 
 // WriteFile writes string (data) to a file, delimited in some fashion; returns error
-func WriteFile(path string, data string) error {
+func WriteFile(path string, data interface{}) error {
 	file, err := os.Create(path)
 	if err != nil {
 		log.Fatal("[!] Error encountered when creating file\n", err)
@@ -68,7 +68,7 @@ func WriteFile(path string, data string) error {
 		log.Fatal("[!] Error encountered when opening file\n", err)
 	}
 	defer f.Close()
-	if _, err = f.WriteString(data); err != nil {
+	if _, err = f.WriteString(data.(string)); err != nil {
 		log.Fatal("[!] Error encountered when writing to file\n", err)
 	}
 	return nil

@@ -57,7 +57,7 @@ func ReadFileByLine(path string, data []string) ([]string, int, error) {
 }
 
 // WriteFile writes string (data) to a file, delimited in some fashion; returns error
-func WriteFile(path string, data interface{}) error {
+func WriteFile(path string, data interface{}) {
 	file, err := os.Create(path)
 	if err != nil {
 		log.Fatal("[!] Error encountered when creating file\n", err)
@@ -71,7 +71,6 @@ func WriteFile(path string, data interface{}) error {
 	if _, err = f.WriteString(data.(string)); err != nil {
 		log.Fatal("[!] Error encountered when writing to file\n", err)
 	}
-	return nil
 }
 
 // Require is a mirror of Require in Solidity; rather than reverting a transaction, this Require will panic loudly and print stacktrace if arguments do not match

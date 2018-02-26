@@ -6,12 +6,13 @@ import (
 	"bufio"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"os"
 	"os/exec"
 	"runtime/debug"
+	"time"
 
 	"github.com/fatih/color"
+	log "github.com/sirupsen/logrus"
 )
 
 // Clear clears the terminal screen
@@ -19,6 +20,12 @@ func Clear() {
 	c := exec.Command("clear")
 	c.Stdout = os.Stdout
 	c.Run()
+}
+
+// Used to time functions
+func Elapsed(start time.Time, name string) {
+	elapsed := time.Since(start)
+	log.Printf("%s took %s", name, elapsed)
 }
 
 // JSONToString converts JSON file to string; returns string and error

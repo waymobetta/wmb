@@ -45,7 +45,7 @@ func ReadFileByLine(path string) ([]string, error) {
 
 	if err != nil {
 		log.Println("[!] Error encountered when opening file\n", err)
-		return []string{""}, err
+		return nil, err
 	}
 
 	scanner := bufio.NewScanner(file)

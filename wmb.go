@@ -68,3 +68,10 @@ func Require(a interface{}, b interface{}) {
 		os.Exit(0)
 	}
 }
+
+// Trap catches an error and panics
+func Trap(err error) {
+	if err != nil {
+		log.Fatal(err)
+	}
+}

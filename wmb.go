@@ -75,3 +75,8 @@ func Trap(err error) {
 		log.Fatal(err)
 	}
 }
+
+// Delay creates a sleep timer
+func Delay(n int) {
+	time.Sleep(time.Second * time.Duration(n))
+}
